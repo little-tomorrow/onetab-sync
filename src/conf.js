@@ -141,7 +141,7 @@ const saveConfig = (value) => {
     fs.writeFileSync(CONFIG, JSON.stringify(value));
 };
 
-export default {
+module.exports = {
     load: loadConfig,
     save: saveConfig,
 };

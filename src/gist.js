@@ -6,7 +6,7 @@ const BACKUP_DATAFILE_NAME = "onetab-data-backup.json";
 const SYNC_DATE = Date.now();
 const DATA_VERSION = 1;
 
-import conf from "./conf";
+const conf = require("./conf");
 
 const upload = (config, content) => {
     const gists = new Gists({token: config.gist_token});
@@ -92,7 +92,7 @@ const download = (config) => {
     })
 };
 
-export default {
+module.exports = {
     upload: upload,
     download: download,
     backup: backup,
