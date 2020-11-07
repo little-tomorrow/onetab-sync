@@ -2,15 +2,16 @@ const fs = require("fs");
 
 const program = require("commander");
 
-import gist from "./gist";
-import openOneTabDB from "./db";
-import conf from "./conf";
+const gist = require("./gist");
+const openOneTabDB = require("./db");
+const conf = require("./conf");
 
 const uploadToGist = async () => {
     console.info("uploading data to gist ...");
     try {
         let config = await conf.load(["chrome_profile_path", "onetab_ext_id", "gist_token"]);
         let oneTabData = await readOneTabData(config);
+        console.log(oneTabData)
         let res = await gist.upload(config, oneTabData);
         console.info("success. " + res.html_url);
         return res;

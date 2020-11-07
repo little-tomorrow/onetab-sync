@@ -3,7 +3,7 @@ const leveldown = require("leveldown");
 const sqlite3 = require("sqlite3").verbose();
 const fs = require("fs");
 
-export const openOneTabDB = async (config) => {
+const openOneTabDB = async (config) => {
     try {
         return await openSqliteDb(config);
     } catch (_) { try {
@@ -126,4 +126,4 @@ const createSqliteDBInterface = (db, key) => {
     }
 };
 
-export default openOneTabDB;
+module.exports = openOneTabDB;
