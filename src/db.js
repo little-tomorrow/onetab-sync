@@ -54,7 +54,7 @@ const createLevelDBInterface = (db, key) => {
         },
         put: async (value) => {
             try {
-                let buf =  Buffer.concat([Buffer.from([0x00]), new Buffer(value, "ucs2")]);
+                let buf =  Buffer.concat([Buffer.from([0x00]), Buffer.from(value, "ucs2")]);
                 return await db.put(key, buf);
             } catch (e) {
                 return Promise.reject(e);
@@ -107,7 +107,7 @@ const createSqliteDBInterface = (db, key) => {
             })
         }),
         put: (value) => new Promise((resolve, reject) => {
-            db.run("UPDATE ItemTable SET value = ? WHERE key = ?", new Buffer(value, "ucs2"), key, (err, res) => {
+            db.run("UPDATE ItemTable SET value = ? WHERE key = ?", Buffer.from(value, "ucs2"), key, (err, res) => {
                 if (err) {
                     reject(err)
                 } else {
